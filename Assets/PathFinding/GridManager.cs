@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +11,21 @@ public class GridManager : MonoBehaviour
         CreateGid();
     }
 
+    public Node GetNode(Vector2Int coordinates)
+    {
+        if (grid.ContainsKey(coordinates))
+        {
+            return grid[coordinates];
+        }
+
+        return null;
+    }
+
     void CreateGid()
     {
-        for(int x = 0; x < gridSize.x; x++)
+        for (int x = 0; x < gridSize.x; x++)
         {
-            for(int y = 0; y < gridSize.y; y++)
+            for (int y = 0; y < gridSize.y; y++)
             {
                 Vector2Int coordinates = new Vector2Int(x, y);
                 grid.Add(coordinates, new Node(coordinates, true));
