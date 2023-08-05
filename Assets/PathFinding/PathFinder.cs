@@ -4,7 +4,7 @@ using UnityEngine;
 public class PathFinder : MonoBehaviour
 {
     [SerializeField] Vector2Int startCoordinates;
-    [SerializeField] Vector2Int destinateCoordinates;
+    [SerializeField] Vector2Int destinationCoordinates;
 
 
     Node startNode;
@@ -27,13 +27,16 @@ public class PathFinder : MonoBehaviour
             grid = gridManager.Grid;
         }
 
-        startNode = new Node(startCoordinates, true);
-        destNode = new Node(destinateCoordinates, true);
     }
 
     void Start()
     {
+        startNode = gridManager.Grid[startCoordinates];
+        destNode = gridManager.Grid[destinationCoordinates];
+
         BreadFirstSearch();
+
+        BuildPath();
     }
 
     void ExploreNeighbors()
@@ -50,13 +53,14 @@ public class PathFinder : MonoBehaviour
             }
         }
 
-        foreach(Node neighbor in neighbors)
+        foreach (Node neighbor in neighbors)
         {
             if (!reached.ContainsKey(neighbor.coordinates) && neighbor.isWalkable)
             {
+                neighbor.connectedTo = currentSearchNode;
                 reached.Add(neighbor.coordinates, neighbor);
                 frontier.Enqueue(neighbor);
-            } 
+            }
         }
     }
 
@@ -73,10 +77,27 @@ public class PathFinder : MonoBehaviour
             currentSearchNode.isExplored = true;
             ExploreNeighbors();
 
-            if (currentSearchNode.coordinates == destinateCoordinates)
+            if (currentSearchNode.coordinates == destinationCoordinates)
             {
                 isRunning = false;
             }
         }
+    }
+
+    List<Node> BuildPath()
+    {
+        List<Node> path = new List<Node>();
+        Node currentnode = destNode;
+
+        while (currentnode.connectedTo != null) 
+        {
+            currentnode = currentnode.connectedTo;
+            path.Add(currentnode);
+            currentnode.isPath = true;
+        }
+
+        path.Reverse(); 
+
+        return path;
     }
 }
