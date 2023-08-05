@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Enemy))]
@@ -7,7 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int maxHP = 5;
 
-    [Tooltip("add amount to maxHP when Enemy died")] 
+    [Tooltip("add amount to maxHP when Enemy died")]
     [SerializeField] int difficultEnemy = 1;
 
 
@@ -25,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         enemy = GetComponent<Enemy>();
     }
 
-    void OnParticleCollision(GameObject other) 
+    void OnParticleCollision(GameObject other)
     {
         ProcessHit();
     }
@@ -34,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHP--;
 
-        if (currentHP <=0)
+        if (currentHP <= 0)
         {
             gameObject.SetActive(false);
             maxHP += difficultEnemy;

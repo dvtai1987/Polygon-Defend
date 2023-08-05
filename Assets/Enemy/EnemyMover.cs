@@ -6,10 +6,10 @@ using UnityEngine;
 public class EnemyMover : MonoBehaviour
 {
     [SerializeField] List<Waypoint> path = new List<Waypoint>();
-    [SerializeField] [Range (0, 5f)] float speed = 1f;
+    [SerializeField][Range(0, 5f)] float speed = 1f;
 
     Enemy enemy;
-    
+
     void OnEnable()
     {
         FindPath();
@@ -32,11 +32,11 @@ public class EnemyMover : MonoBehaviour
         {
             Waypoint waypoint = child.GetComponent<Waypoint>();
 
-            if(waypoint != null)
+            if (waypoint != null)
             {
                 path.Add(waypoint);
             }
-            
+
         }
     }
 
@@ -53,7 +53,7 @@ public class EnemyMover : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        foreach (Waypoint waypoint in path) 
+        foreach (Waypoint waypoint in path)
         {
             Vector3 startPosition = transform.position;
             Vector3 endPosition = waypoint.transform.position;
@@ -66,7 +66,7 @@ public class EnemyMover : MonoBehaviour
                 travelPercent += Time.deltaTime * speed;
                 transform.position = Vector3.Lerp(startPosition, endPosition, travelPercent);
 
-                yield return new WaitForEndOfFrame();  
+                yield return new WaitForEndOfFrame();
             }
         }
 

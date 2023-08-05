@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetLocator : MonoBehaviour
 {
     [SerializeField] Transform weapon;
     [SerializeField] ParticleSystem projectileParticles;
-    [SerializeField] float range = 15f; 
+    [SerializeField] float range = 15f;
     Transform target;
 
     void Update()
@@ -21,11 +19,11 @@ public class TargetLocator : MonoBehaviour
         Transform closetTarget = null;
         float maxDistance = Mathf.Infinity;
 
-        foreach(Enemy enemy in enemies)
+        foreach (Enemy enemy in enemies)
         {
             float targetDistance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if(targetDistance < maxDistance)
+            if (targetDistance < maxDistance)
             {
                 closetTarget = enemy.transform;
                 maxDistance = targetDistance;
@@ -41,7 +39,7 @@ public class TargetLocator : MonoBehaviour
 
         weapon.LookAt(target);
 
-        if(targetDistance < range)
+        if (targetDistance < range)
         {
             Attack(true);
         }

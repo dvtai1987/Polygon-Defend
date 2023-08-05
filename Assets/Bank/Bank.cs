@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class Bank : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class Bank : MonoBehaviour
         currentBalance -= Mathf.Abs(amount);
         UpdateDisplay();
 
-        if(currentBalance < 0)
+        if (currentBalance < 0)
         {
             ReloadScene();
         }

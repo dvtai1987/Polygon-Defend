@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypoint
@@ -11,32 +9,35 @@ public class Waypoint
     public bool IsPlaceable { get { return isPlaceable; } }
 
     GridManager gridManager;
+    PathFinder pathFinder;
     Vector2Int coordinates = new Vector2Int();
 
     void Awake()
     {
         gridManager = FindObjectOfType<GridManager>();
+        pathFinder = FindObjectOfType<PathFinder>();
     }
 
     void Start()
     {
         if (gridManager != null)
         {
-            coordinates =  gridManager.GetCoordinatesFromPosition(transform.position);
+            coordinates = gridManager.GetCoordinatesFromPosition(transform.position);
 
-            if(!isPlaceable )
+            if (!isPlaceable)
             {
                 gridManager.BlockNode(coordinates);
             }
         }
     }
 
-    void OnMouseDown() 
+    void OnMouseDown()
     {
-        if (isPlaceable)
+        if (gridManager.GetNode(coordinates).isWalkable && !pathFinder.WillBlockPath(coordinates))
         {
             bool isPlaced = towerPrefabs.CreateTower(towerPrefabs, transform.position);
             isPlaceable = !isPlaced;
+            gridManager.BlockNode(coordinates);
         }
     }
 }

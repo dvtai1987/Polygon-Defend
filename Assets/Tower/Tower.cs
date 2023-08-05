@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -10,19 +8,19 @@ public class Tower : MonoBehaviour
     {
         Bank bank = FindObjectOfType<Bank>();
 
-        if(bank == null)
+        if (bank == null)
         {
             return false;
         }
 
-        if(bank.CurrentBalance >= cost)
+        if (bank.CurrentBalance >= cost)
         {
             Instantiate(tower.gameObject, position, Quaternion.identity);
             bank.Withdraw(cost);
-            return true;    
+            return true;
         }
 
         return false;
-        
+
     }
 }
