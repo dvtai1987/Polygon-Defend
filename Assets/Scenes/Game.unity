@@ -6222,7 +6222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d77676148c34424aa7b5bf14ff3ee86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 8, y: 8}
+  gridSize: {x: 10, y: 10}
+  unintyGridSize: 10
 --- !u!4 &464879963
 Transform:
   m_ObjectHideFlags: 0
@@ -19629,8 +19630,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fedf6a0bbe721f44a4218899dfc6d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCoordinates: {x: 0, y: 0}
-  destinationCoordinates: {x: 3, y: 2}
+  startCoordinates: {x: 1, y: 3}
+  destinationCoordinates: {x: 5, y: 7}
 --- !u!1001 &1347996416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31764,6 +31765,10 @@ PrefabInstance:
     - target: {fileID: 3433599971556539259, guid: f8f0d3576dd409e4e91205533a653e49, type: 3}
       propertyPath: m_Name
       value: ObjectPool
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727949518258926881, guid: f8f0d3576dd409e4e91205533a653e49, type: 3}
+      propertyPath: poolSize
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
